@@ -11,8 +11,7 @@ positivos.*/
 main(){
 	srand(time(NULL));
 	setlocale(LC_CTYPE, "Spanish");
-	int M[10][10], i, j, m,n;
-	float prom=0, suma=0, ele=0;
+	int M[10][10], i, j, m,n, cero=0, neg=0, pos=0, suma_neg=0, suma_pos=0;
 	printf("¿De cuantas filas será la matriz?(Un maximo de 10, Solo valores positivos):	");
 	scanf("%d",&m);
 	printf("¿De cuantas columnas será la matriz?(Un maximo de 10, Solo valores positivos):	");
@@ -23,17 +22,26 @@ main(){
 		for(j=0;j<n;j++){
 			M[i][j]=(rand()%21)-10;
 			printf("%d\t", M[i][j]);
-			if(M[i][j]>0 || M[i][j]<0){
-				suma=suma+M[i][j];
+			if(M[i][j]==0){
+				cero++;
+			}
+			else{ if(M[i][j]>0){
+				pos++;
+				suma_pos=suma_pos+M[i][j];
+			}
+			else{
+				neg++;
+				suma_neg=suma_neg+M[i][j];
 			}
 		}
 		}
 		printf("\n");
 	}
-	ele=m*n;
-	prom=suma/ele;	
-	printf("\n La suma de los números es: %0.1f\n",suma);
-	printf("El promedio de los elementos es: %0.3f\n", prom);
+	printf("\n La suma de los números positivos es: %d\n",suma_pos);
+	printf("\n La suma de los números negativos es: %d\n",suma_neg);
+	printf("\n La cantidad de ceros es: %d",cero);
+	printf("\n La cantidad de números positivos es: %d",pos);
+	printf("\n La cantidad de números negativos es: %d\n",neg);}
 	}
 	else{
 		printf("\nError, intentelo de nuevo\n");
